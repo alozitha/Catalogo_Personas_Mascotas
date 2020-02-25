@@ -1,19 +1,21 @@
 package catalogo_personas_mascotas
 
-class Person {
-    String nombre
-    String apellidoPaterno
-    String apellidoMaterno
-    String telefono
-    String direccion
-    Date fechaAlta
-    Date fechaModificacion
+class Person  {
+    String name
+    String lastnameP
+    String lastnameM
+    String phone
+    String address
+    Date date
+    Date modificationDate
 
     static constraints = {
-        nombre(blank: false, nullable: false, maxSize: 255)
-        apellidoPaterno(blank: false, nullable: false,maxSize: 255)
-        apellidoMaterno(nullable: true,maxSize: 255)
-        telefono(blank: false)
-        direccion(blank: false, nullable: false,maxSize: 255)
+        name(blank: false, nullable: false, maxSize: 255)
+        lastnameP(blank: false, nullable: false,maxSize: 255)
+        lastnameM(nullable: true,maxSize: 255)
+        phone(blank: false,matches:'(\\d{10})')
+        address(blank: false, nullable: false,maxSize: 255)
+        date(nullable: false)
+        modificationDate(nullable: false)
     }
 }
