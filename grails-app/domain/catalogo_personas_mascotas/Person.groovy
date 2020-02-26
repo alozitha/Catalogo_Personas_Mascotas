@@ -1,6 +1,7 @@
 package catalogo_personas_mascotas
 
 class Person  {
+    String id
     String name
     String lastnameP
     String lastnameM
@@ -8,6 +9,10 @@ class Person  {
     String address
     Date date
     Date modificationDate
+    static mapping = {
+        id generator: 'increment'
+        version false
+    }
 
     static constraints = {
         name(blank: false, nullable: false, maxSize: 255)
