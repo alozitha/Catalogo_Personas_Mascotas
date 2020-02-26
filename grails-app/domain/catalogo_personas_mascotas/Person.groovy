@@ -1,7 +1,6 @@
 package catalogo_personas_mascotas
 
 class Person  {
-    String id
     String name
     String lastnameP
     String lastnameM
@@ -9,8 +8,11 @@ class Person  {
     String address
     Date date
     Date modificationDate
+
+    static hasMany=[pets:Pet]
+
     static mapping = {
-        id generator: 'increment'
+       // id generator: 'increment'
         version false
     }
 
@@ -21,6 +23,8 @@ class Person  {
         phone(blank: false,matches:'(\\d{10})')
         address(blank: false, nullable: false,maxSize: 255)
         date(nullable: false)
-        modificationDate(nullable: false)
+
     }
+
+
 }

@@ -10,8 +10,8 @@ class PersonControllerSpec extends Specification implements ControllerUnitTest<P
     def cleanup() {
     }
 
-    void "test something"() {
+    /*void "test something"() {
         expect:"fix me"
             true == false
-    }
+    }*/
 }

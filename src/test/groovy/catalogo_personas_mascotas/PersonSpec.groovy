@@ -19,7 +19,6 @@ class PersonSpec extends Specification implements DomainUnitTest<Person> {
         domain.address=null
         domain.lastnameP=null
         domain.date=null
-        domain.modificationDate=null
         domain.phone=null
 
         then:
@@ -27,7 +26,6 @@ class PersonSpec extends Specification implements DomainUnitTest<Person> {
         !domain.validate(['address'])
         !domain.validate(['lastnameP'])
         !domain.validate(['date'])
-        !domain.validate(['modificationDate'])
         !domain.validate(['phone'])
     }
 
