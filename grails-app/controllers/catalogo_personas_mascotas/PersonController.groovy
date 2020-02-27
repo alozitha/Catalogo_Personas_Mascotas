@@ -14,5 +14,10 @@ class PersonController {
         // devuelve la lista de personas al arreglo personList
         return [personList:Person.list()]
     }
+    def show(){
+        def person=Person.get(params.id)
+        return [person:person]
+
+    }
 
 }

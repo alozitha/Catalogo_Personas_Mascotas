@@ -30,9 +30,9 @@
         </tr>
         <g:each var="person" in="${personList}">
             <tr>
-                <td>${person.name}</td>
+             <td><g:link action="show" id="${person.id}">${person.name}</g:link><br/></td>
                 <g:if  test="${person.lastnameM !=null}">
-                    <td>${person.lastnameP} ${person.lastnameP}.</td>
+                    <td>${person.lastnameP} ${person.lastnameM}.</td>
                 </g:if>
             <g:else>
                 <td>${person.lastnameP}</td>
