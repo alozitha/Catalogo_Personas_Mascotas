@@ -1,28 +1,52 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta name="layout" content="main" />
-        <g:set var="entityName" value="${message(code: 'person.label', default: 'Person')}" />
-        <title><g:message code="default.list.label" args="[entityName]" /></title>
-    </head>
-    <body>
-        <a href="#list-person" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-        <div class="nav" role="navigation">
-            <ul>
-                <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-                <li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-            </ul>
-        </div>
-        <div id="list-person" class="content scaffold-list" role="main">
-            <h1><g:message code="default.list.label" args="[entityName]" /></h1>
-            <g:if test="${flash.message}">
-                <div class="message" role="status">${flash.message}</div>
-            </g:if>
-            <f:table collection="${personList}" />
+<head>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
 
-            <div class="pagination">
-                <g:paginate total="${personCount ?: 0}" />
-            </div>
-        </div>
-    </body>
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+<body>
+    <h2>Lista de Personas</h2>
+    <table>
+        <tr>
+            <th>Nombre</th>
+            <th>Apellidos</th>
+            <th>Telefono</th>
+            <th>Direccion</th>
+        </tr>
+        <g:each var="person" in="${personList}">
+            <tr>
+                <td>${person.name}</td>
+                <g:if  test="${person.lastnameM !=null}">
+                    <td>${person.lastnameP} ${person.lastnameP}.</td>
+                </g:if>
+            <g:else>
+                <td>${person.lastnameP}</td>
+           </g:else>
+                <td>${person.phone}</td>
+                <td>${person.address}</td>
+            </tr>
+        </g:each>
+    </table>
+
+    <div>
+        <br>
+        <button><g:link class="create" action="create">Agregar nueva persona</g:link></button>
+    </div>
+
+</body>
 </html>
