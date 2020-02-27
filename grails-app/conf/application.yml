@@ -92,7 +92,7 @@ hibernate:
 dataSource:
     pooled: true
     jmxExport: true
-    dialect: org.hibernate.dialect.MySQLInnoDBDialect
+    dialect: org.hibernate.dialect.MySQL5InnoDBDialect
     driverClassName: 'com.mysql.jdbc.Driver'
     username: 'root'
     password: ''
@@ -101,6 +101,7 @@ environments:
     development:
         dataSource:
             dbCreate: update
+            logSql: true
             url: jdbc:mysql://localhost:3306/catalogo?zeroDateTimeBehavior=convertToNull
 
     test:

@@ -6,17 +6,18 @@ class Pet {
     String name
     Date birthday
     Date adoption
-    Date date
-    Date dateModification
-    static belongsTo = [person: Person]
+    Date dateCreated
+    Date lastUpdated
+    //static belongsTo = [person: Person]
 
     static constraints = {
+
+
         name(nullable: false,blank: false,maxSize: 255)
         birthday(nullable: true,validator: {val ->
            // println(val)
             if(val!=null)
-            val.before(new Date()+1)
-
+             val<=new Date()
         })
         adoption(nullable: false,validator: { val, obj ->
             if(obj.birthday!=null){
@@ -26,14 +27,12 @@ class Pet {
                     val.before(new Date()+1)
                 }
 
-
             }else{
                 val.before(new Date()+1) // pero antes de una fecha futura
             }
 
 
         })
-        date(nullable: false)
     }
 
 }

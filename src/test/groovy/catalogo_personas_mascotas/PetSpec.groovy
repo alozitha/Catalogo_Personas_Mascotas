@@ -14,13 +14,13 @@ class PetSpec extends Specification implements DomainUnitTest<Pet> {
     void 'Validar que los datos no sean nulos'() {
         when:
         domain.name = null
-        domain.date=null
+
         domain.adoption=null
 
 
         then:
         !domain.validate(['name'])
-        !domain.validate(['date'])
+
         !domain.validate(['adoption'])
 
     }

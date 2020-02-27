@@ -10,95 +10,93 @@ class PersonSpec extends Specification implements DomainUnitTest<Person> {
 
     def cleanup() {
     }
+    void 'Test  de name'(){
 
-
-
-    void 'Validar que los datos no sean nulos'() {
-        when:
-        domain.name = null
-        domain.address=null
-        domain.lastnameP=null
-        domain.date=null
-        domain.phone=null
-
-        then:
-        !domain.validate(['name'])
-        !domain.validate(['address'])
-        !domain.validate(['lastnameP'])
-        !domain.validate(['date'])
-        !domain.validate(['phone'])
-    }
-
-    void 'Validar datos en blanco'() {
-        when:
-        domain.name = ''
-        domain.address=''
-        domain.phone=''
-        domain.lastnameP=''
-
-        then:
-        !domain.validate(['name'])
-        !domain.validate(['address'])
-        !domain.validate(['lastnameP'])
-        !domain.validate(['phone'])
-    }
-
-    void 'Validar que solo tenga un maximo de 255 caracteres'() {
-        when: 'string de 256 caracteres'
-        String str = 'a' * 256
-        domain.name = str
-        domain.lastnameP=str
-        domain.lastnameM=str
-        domain.address=str
-
-        then:
-        !domain.validate(['name'])
-        !domain.validate(['lastnameP'])
-        !domain.validate(['lastnameM'])
-        !domain.validate(['address'])
-        //domain.errors['name'].code == 'maxSize.exceeded'
-
-        when: ' string of 255 caracteres'
-        str = 'a' * 255
-        domain.name = str
-        domain.address=str
-        domain.lastnameM=str
-        domain.lastnameP=str
-
-        then: 'name validation passes'
-        domain.validate(['name'])
-        domain.validate(['lastnameP'])
-        domain.validate(['lastnameM'])
-        domain.validate(['address'])
-    }
-
-    void 'logitud de 10 digitos'(){
-        when:'cuando son mas de 10 digitos '
-        String str ='1'*11
-        domain.phone=str
-        then:
-        !domain.validate(['phone'])
 
         when:
-        str= '1'*10
-        //println(str)
-        domain.phone=str
+        domain.name = value
+
         then:
-        domain.validate(['phone'])
+        expected == domain.validate(['name'])
+        //domain.errors['name']?.code == expectedErrorCode
+
+        where:
+        value   | expected
+        null    |  false
+        ''      |  false
+        'a'*255 |  true
+        'a'*256 |  false
+
+
+    }
+    void 'Test  de lastnameP'(){
+
+        when:
+        domain.lastnameP = value
+
+        then:
+        expected == domain.validate(['lastnameP'])
+        //domain.errors['name']?.code == expectedErrorCode
+
+        where:
+        value   | expected
+        null    |  false
+        ''      |  false
+        'a'*255 |  true
+        'a'*256 |  false
+
+    }
+    void 'Test  de lastnameM'(){
+
+        when:
+        domain.lastnameM = value
+
+        then:
+        expected == domain.validate(['lastnameM'])
+
+        where:
+        value   | expected
+        null    |  true
+        'a'*255 |  true
+        'a'*256 |  false
+
+
+    }
+    void 'Test  de address'(){
+        when:
+        domain.address = value
+
+        then:
+        expected == domain.validate(['address'])
+        //domain.errors['name']?.code == expectedErrorCode
+
+        where:
+        value   | expected
+        null    |  false
+        'a'*255 |  true
+        'a'*256 |  false
+
+
+    }
+    void 'Test  de phone'(){
+
+        when:
+        domain.phone = value
+
+        then:
+        expected == domain.validate(['phone'])
+        //domain.errors['name']?.code == expectedErrorCode
+
+        where:
+        value     | expected
+        null      |  false
+        ''        |  false
+        '1'*11    |  false
+        '1'*9+'a' |  false
+        '1'*10    |  true
+
 
     }
 
-    void 'validacion de solo numeros'(){
-        when:
-        String str='1'*9+'a'
-        domain.phone=str
-        then:
-        !domain.validate(['phone'])
-        when:
-        str='0123456789'
-        domain.phone=str
-        then:
-        domain.validate(['phone'])
 
-    }
 }
