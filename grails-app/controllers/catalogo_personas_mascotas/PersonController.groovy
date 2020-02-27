@@ -21,8 +21,15 @@ class PersonController {
     }
     def create(){}
     def save(){
-        println(params)
-        render('save')
+        def person= new Person(params)
+        //si todas las validaciones fallan entonces mandamos un render
+        if (!person.validate()) {
+            render('Ha fallado el poder guardar los datos')
+        }else{
+            person.save()
+            render('Se guardaron correctamente los datos')
+        }
+        
 
     }
 
