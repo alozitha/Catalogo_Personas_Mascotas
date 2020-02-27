@@ -8,31 +8,25 @@ class Pet {
     Date adoption
     Date dateCreated
     Date lastUpdated
-    //static belongsTo = [person: Person]
+    //static belongsTo = [person: Person] // esta opcion tambien funciona para poder hacer una relacion funcional
 
     static constraints = {
-
-
-        name(nullable: false,blank: false,maxSize: 255)
-        birthday(nullable: true,validator: {val ->
-           // println(val)
-            if(val!=null)
-             val<=new Date()
-        })
-        adoption(nullable: false,validator: { val, obj ->
-            if(obj.birthday!=null){
-                if(val.before(new Date()+1)){
-                    val.after(obj.birthday)//despues de la fecha de nacimiento
+        name nullable: false,blank: false,maxSize: 255
+        birthday nullable: true,validator: {valueBirthday ->
+            if(valueBirthday!=null)
+                valueBirthday<=new Date()
+        }
+        adoption nullable: false,validator: { valueAdoption, pet ->
+            if(pet.birthday!=null){
+                if(valueAdoption<=new Date()+1){
+                    valueAdoption>pet.birthday//despues de la fecha de nacimiento
                 }else{
-                    val.before(new Date()+1)
+                    valueAdoption<=new Date()+1
                 }
-
             }else{
-                val.before(new Date()+1) // pero antes de una fecha futura
+                valueAdoption<=new Date()+1 // pero antes de una fecha futura
             }
-
-
-        })
+        }
     }
 
 }

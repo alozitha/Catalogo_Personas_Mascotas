@@ -8,8 +8,14 @@ import grails.gorm.transactions.Transactional
 class PersonController {
     static allowedMethods = [save: 'POST', update: 'PUT', delete: 'DELETE']
 
+
+    // metodo para mostrar lista de todos los datos registrados en la tabla Person
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond Person.list(params), model:[personCount: Person.count()]
     }
+    //Metodo para agregar una persona
+
+
+
 }
