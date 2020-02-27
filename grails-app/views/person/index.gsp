@@ -45,7 +45,7 @@
 
     <div>
         <br>
-        <button><g:link class="create" action="create">Agregar nueva persona</g:link></button>
+        <button><g:link action="create">Agregar nueva persona</g:link></button>
     </div>
 
 </body>

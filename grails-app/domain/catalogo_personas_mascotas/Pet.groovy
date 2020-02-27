@@ -15,7 +15,8 @@ class Pet {
             if(valueBirthday && valueBirthday<=new Date()) return 'not.future'
         }
         adoption nullable: false,validator: { valueAdoption, pet ->
-            if(pet.birthday && valueAdoption>pet.birthday && valueAdoption<=new Date()+1 ) return 'not.beforeBirthday'
+            if(pet.birthday && valueAdoption>pet.birthday) return 'not.beforeBirthday'
+            if(valueAdoption<=new Date()+1) return 'not.future'
         }
     }
 }
