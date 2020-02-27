@@ -11,7 +11,7 @@ class PersonController {
 
     // metodo para mostrar lista de todos los datos registrados en la tabla Person
     def index(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
+       // params.max = Math.min(max ?: 10, 100)
         respond Person.list(params), model:[personCount: Person.count()]
     }
     //Metodo para agregar una persona
