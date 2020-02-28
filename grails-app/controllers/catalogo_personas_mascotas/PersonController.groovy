@@ -22,15 +22,15 @@ class PersonController {
     def create(){}
     def save(){
         def person= new Person(params)
-        //si todas las validaciones fallan entonces mandamos un render
-        if (!person.validate()) {
-            //regresamos los parametos
-            redirect params:params, action:'create'
-        }else{
+        if (person.validate()) {
             person.save()
-            render('Se guardaron correctamente los datos')
+            flash.message='Se guardo correctamente'
+            redirect action: 'index'
         }
+        else {
+            render( view:'create',model:[person:person])
 
+        }
 
     }
 

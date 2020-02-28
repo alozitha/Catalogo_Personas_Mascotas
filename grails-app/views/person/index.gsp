@@ -48,5 +48,9 @@
         <button><g:link action="create">Agregar nueva persona</g:link></button>
     </div>
 
+    <g:if test="${flash.message}">
+        <div class="message" style="display: block">${flash.message}</div>
+    </g:if>
+
 </body>
 </html>
