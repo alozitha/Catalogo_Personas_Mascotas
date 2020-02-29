@@ -29,9 +29,27 @@ class PersonController {
         }
         else {
             render( view:'create',model:[person:person])
-
         }
 
     }
+
+    def edit(Long id){
+        def person=Person.get(id)
+        return [person:person]
+    }
+
+    def update(Long id){
+        Person person= Person.get(id)
+        person.properties= params
+        if(person.validate()){
+            person.save(flush : true) // se utiliza el flush para que se conserve el dato y no genere otro
+            flash.message='Se edito correctamente el dato con el nombre '+person.name
+            redirect action: 'index'
+        }else{
+            render( view:'edit',model:[person:person])
+        }
+
+    }
+
 
 }

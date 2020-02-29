@@ -1,40 +1,19 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta name="layout" content="main" />
-        <g:set var="entityName" value="${message(code: 'person.label', default: 'Person')}" />
-        <title><g:message code="default.edit.label" args="[entityName]" /></title>
-    </head>
-    <body>
-        <a href="#edit-person" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-        <div class="nav" role="navigation">
-            <ul>
-                <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-                <li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-                <li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-            </ul>
-        </div>
-        <div id="edit-person" class="content scaffold-edit" role="main">
-            <h1><g:message code="default.edit.label" args="[entityName]" /></h1>
-            <g:if test="${flash.message}">
-            <div class="message" role="status">${flash.message}</div>
-            </g:if>
-            <g:hasErrors bean="${this.person}">
-            <ul class="errors" role="alert">
-                <g:eachError bean="${this.person}" var="error">
-                <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
-                </g:eachError>
-            </ul>
-            </g:hasErrors>
-            <g:form resource="${this.person}" method="PUT">
-                <g:hiddenField name="version" value="${this.person?.version}" />
-                <fieldset class="form">
-                    <f:all bean="person"/>
-                </fieldset>
-                <fieldset class="buttons">
-                    <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
-                </fieldset>
-            </g:form>
-        </div>
-    </body>
+<body>
+
+<h2>Datos personales de ${person?.name}</h2>
+
+<g:form action="update" method="PUT" id="${person.id}">
+    Nombre:<g:field type="text" name="name" min="10" required="" value="${person?.name}"/><br/>
+    Apellido Paterno:<g:field type="text" name="lastnameP"  required="" value="${person?.lastnameP}"/><br/>
+    Apellido Materno:<g:field type="text" name="lastnameM" value="${person?.lastnameM}"/><br/>
+    Direccion:<g:field type="text" name="address"  required="" value="${person?.address}"/><br/>
+    Telefono:<g:field type="text" name="phone" min="10" required="" value="${person?.phone}"/><br/><br/>
+    <input type="submit" class="button" value="Editar" />
+    <g:eachError bean="${person}">
+        <li><g:message error="${it}"/></li>
+    </g:eachError>
+</g:form>
+</body>
 </html>
