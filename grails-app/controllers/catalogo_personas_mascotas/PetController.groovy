@@ -17,4 +17,9 @@ class PetController {
         return [pet:pet]
 
     }
+    def create(){
+
+
+        return [personList:Person.list()]
+    }
 }
