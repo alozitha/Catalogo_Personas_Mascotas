@@ -6,11 +6,11 @@
 
 <g:form action="save" method="POST">
     Nombre:<g:field type="text" name="name" min="10" required="" value="${pet?.name}"/><br/>
-    Cumpleaños:<g:field type="text" name="lastnameP"  required="" value="${pet?.brithday}"/><br/>
-    Fecha adopción:<g:field type="text" name="lastnameM" value="${pet?.adoption}"/><br/>
+    Cumpleaños:<g:field type="date"  name="birthday"  required="" value="${pet?.birthday?.format('yyyy-MM-dd')}" /><br/>
+    Fecha adopción:<g:field type="date" name="adoption" value="${pet?.adoption?.format('yyyy-MM-dd')}"/><br/>
     Dueño:
     <g:select optionKey = "id" optionValue = "${{it.name +' '+it.lastnameP +' '+ (it.lastnameM ?: ' ' )}}"
-              name="person.name" from = "${personList}"/><br/>
+              name="person" from = "${personList}" value="${pet?.person?.id}"/><br/>
     <input type="submit" class="button" value="Guardar" />
 
     <g:eachError bean="${pet}">

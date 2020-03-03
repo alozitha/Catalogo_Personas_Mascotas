@@ -11,8 +11,5 @@ class PetControllerSpec extends Specification implements ControllerUnitTest<PetC
     def cleanup() {
     }
 
-    void "test something"() {
-        expect:"fix me"
-            true == false
-    }
+
 }

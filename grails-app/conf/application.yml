@@ -79,6 +79,9 @@ grails:
                 scriptlets: html
                 taglib: none
                 staticparts: none
+    databinding:
+        dateFormats:
+            - "yyyy-MM-dd"
 endpoints:
     jmx:
         unique-names: true
