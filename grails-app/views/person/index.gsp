@@ -40,8 +40,10 @@
            </g:else>
                 <td>${person.phone}</td>
                 <td>${person.address}</td>
+                <td>${petList.count(person.id)}</td>
             </tr>
         </g:each>
+
     </table>
     <div>
         <br>
