@@ -15,6 +15,10 @@ Apellidos:
 </g:else>
 Telefono:${person.phone}<br/>
 Direccion:${person.address}</br>
+Mascotas de la persona:
+${pet.name ?: 'Ninguna ' }</br>
 <g:link action="edit" id="${person.id}">Editar</g:link><br/>
+
+
 </body>
 </html>

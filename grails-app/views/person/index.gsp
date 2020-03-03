@@ -27,6 +27,7 @@
             <th>Apellidos</th>
             <th>Telefono</th>
             <th>Direccion</th>
+            <th>Num mascotas</th>
         </tr>
         <g:each var="person" in="${personList}">
             <tr>
@@ -42,7 +43,6 @@
             </tr>
         </g:each>
     </table>
-
     <div>
         <br>
         <button><g:link action="create">Agregar nueva persona</g:link></button>

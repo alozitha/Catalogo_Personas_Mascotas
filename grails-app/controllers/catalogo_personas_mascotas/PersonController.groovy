@@ -12,11 +12,15 @@ class PersonController {
     def index() {
        // params.max = Math.min(max ?: 10, 100)
         // devuelve la lista de personas al arreglo personList
-        return [personList:Person.list()]
+        def personList=Person.list()
+        def petList=Pet.findByPerson(personList)
+        render(petList.name)
+        return [personList:personList,petList:petList]
     }
     def show(Long id){
         def person=Person.get(id)
-        return [person:person]
+        def pet=Pet.findAllByPerson(person)
+        return [person:person,pet:pet]
 
     }
     def create(){}
