@@ -36,5 +36,21 @@ class PetController {
         }
 
     }
+    def edit(Long id){
+        def pet=Pet.get(id)
+        return [pet:pet,personList:Person.list()]
+    }
+    def update(Long id){
+        Pet pet= Pet.get(id)
+        pet.properties= params
+        if(pet.validate()){
+            pet.save(flush : true) // se utiliza el flush para que se conserve el dato y no genere otro
+            flash.message='Se edito correctamente el dato con el nombre '+pet.name
+            redirect action: 'index'
+        }else{
+            render( view:'edit',model:[pet:pet,personList:Person.list()])
+        }
+
+    }
 
 }
