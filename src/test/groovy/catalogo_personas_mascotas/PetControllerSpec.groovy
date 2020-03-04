@@ -22,16 +22,16 @@ class PetControllerSpec extends Specification implements ControllerUnitTest<PetC
     }
 
     def 'save with information is incorrect'(){
-        when:
+        given:'recibe information about pet'
         request.method = 'POST'
         request.contentType = FORM_CONTENT_TYPE
         params['name'] ="Firulais"
         params['birthday'] ='2020-03-05'
         params['adoption']='2020-02-25'
         params['person']=10
+        when:'call the function save'
         controller.save()
-
-        then:
+        then:'return models and action or view'
         model.pet
         model.personList
         view =='/pet/create'
@@ -40,15 +40,15 @@ class PetControllerSpec extends Specification implements ControllerUnitTest<PetC
 
     }
     def 'save with information correct'(){
-        when:
+        given:
         request.method = 'POST'
         request.contentType = FORM_CONTENT_TYPE
         params['name'] ="Firulais"
         params['birthday'] ='2020-02-23'
         params['adoption']='2020-02-25'
         params['person']=1
+        when:
         controller.save()
-
         then: 'a message indicating that has been saved '
         flash.message
         and:  'the user is redirected'
@@ -77,30 +77,30 @@ class PetControllerSpec extends Specification implements ControllerUnitTest<PetC
     }
 
     def'update with information correct'(){
-        when:
+        given:
         request.method = 'POST'
         request.contentType = FORM_CONTENT_TYPE
         params['name'] ="Lucifer"
         params['birthday'] ='2020-02-21'
         params['adoption']='2020-02-25'
         params['person']=1
+        when:
         controller.update(1)
         then:
         flash.message
         and:
         response.redirectedUrl=='/pet/index'
 
-
-
     }
     def'update with information incorrect'(){
-        when:
+        given:
         request.method = 'POST'
         request.contentType = FORM_CONTENT_TYPE
         params['name'] =""
         params['birthday'] ='2020-02-21'
         params['adoption']='2020-02-25'
         params['person']=2
+        when:
         controller.update(1)
         then:
         view=='/pet/edit'

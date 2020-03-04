@@ -18,26 +18,26 @@ class PetController {
 
     def show(Long id){
         def pet=Pet.get(id)
-        
+        if(!pet){
+            flash.message="El identificador de la mascota es incorrecto"
+            redirect(action: 'index')
+            return
+        }
         render(view:'show',model:[pet:pet])
-
     }
     def create(){
         render(view: 'create',model:[personList:Person.list()] )
-
     }
     def save(){
         def pet= new Pet(params)
         //print(params)
-        if (pet.validate()) {
-            pet.save()
-            flash.message='Se guardo correctamente'
-            redirect (action: 'index')
-        }
-        else {
-            //print("aqui")
+        if (!pet.validate()) {
             render( view:'create',model:[pet:pet,personList:Person.list()])
+            return
         }
+        pet.save()
+        flash.message='Se guardo correctamente'
+        redirect (action: 'index')
 
     }
     def edit(Long id){
@@ -52,13 +52,13 @@ class PetController {
     def update(Long id){
         Pet pet= Pet.get(id)
         pet.properties= params
-        if(pet.validate()){
-            pet.save(flush:true) // se utiliza el flush para que se conserve el dato y no genere otro
-            flash.message='Se edito correctamente el dato con el nombre '+pet.name
-            redirect action: 'index'
-        }else{
+        if(!pet.validate()){
             render( view:'edit',model:[pet:pet,personList:Person.list()])
+            return
         }
+        pet.save(flush:true) // se utiliza el flush para que se conserve el dato y no genere otro
+        flash.message='Se edito correctamente el dato con el nombre '+pet.name
+        redirect action: 'index'
 
     }
 

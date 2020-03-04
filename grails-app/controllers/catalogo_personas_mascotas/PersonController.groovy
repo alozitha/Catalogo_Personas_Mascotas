@@ -17,25 +17,32 @@ class PersonController {
     def show(Long id){
         def person=Person.get(id)
         def petList=Pet.findAllByPerson(person)
+        if(!person){
+            flash.message="El identificador de la persona es incorrecto"
+            redirect(action: 'index')
+            return
+        }
         return [person:person,petList:petList]
-
     }
     def create(){}
     def save(){
         def person= new Person(params)
-        if (person.validate()) {
-            person.save()
-            flash.message='Se guardo correctamente'
-            redirect action: 'index'
-        }
-        else {
+        if (!person.validate()) {
             render( view:'create',model:[person:person])
+            return
         }
-
+        person.save()
+        flash.message='Se guardo correctamente'
+        redirect action: 'index'
     }
 
     def edit(Long id){
         def person=Person.get(id)
+        if(!person){
+            flash.message="El identificador de la persona es incorrecto"
+            redirect(action: 'index')
+            return
+        }
         return [person:person]
     }
 
@@ -43,12 +50,12 @@ class PersonController {
         Person person= Person.get(id)
         person.properties= params
         if(person.validate()){
-            person.save(flush : true) // se utiliza el flush para que se conserve el dato y no genere otro
-            flash.message='Se edito correctamente el dato con el nombre '+person.name
-            redirect action: 'index'
-        }else{
             render( view:'edit',model:[person:person])
+            return
         }
+        person.save(flush : true) // se utiliza el flush para que se conserve el dato y no genere otro
+        flash.message='Se edito correctamente el dato con el nombre '+person.name
+        redirect action: 'index'
 
     }
 
