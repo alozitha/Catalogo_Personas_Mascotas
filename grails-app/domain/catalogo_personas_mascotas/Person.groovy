@@ -25,5 +25,11 @@ class Person  {
 
     }
 
+    Integer getPetCount(){
+        Pet.countByPerson(this)
+    }
+    String getFullName(){
+        name+''+lastnameP+''+(lastnameM?:'')
+    }
 
 }

@@ -15,8 +15,15 @@ Apellidos:
 </g:else>
 Telefono:${person.phone}<br/>
 Direccion:${person.address}</br>
-Mascotas de la persona:
-${pet.name ?: 'Ninguna ' }</br>
+Mascotas de la persona:<br/>
+<g:if test="${!petList}">
+    Ninguna <br/>
+</g:if>
+<g:else>
+    <g:each var="pet" in="${petList}">
+        ${pet.name} <br/>
+    </g:each>
+</g:else>
 <g:link action="edit" id="${person.id}">Editar</g:link><br/>
 
 

@@ -10,23 +10,14 @@ class PersonController {
 
     // metodo para mostrar lista de todos los datos registrados en la tabla Person
     def index() {
-       // params.max = Math.min(max ?: 10, 100)
         // devuelve la lista de personas al arreglo personList
         def personList=Person.list()
-        def petList=Pet.list().personId
-        //def pet=[]
-        /*for(person in personList){
-           // println(Pet.findAllByPerson(person))
-            println(Pet.countByPerson(person))
-
-        }
-       //println(pet) */
-        return [personList:personList,petList:petList]
+        return [personList:personList]
     }
     def show(Long id){
         def person=Person.get(id)
-        def pet=Pet.findAllByPerson(person)
-        return [person:person,pet:pet]
+        def petList=Pet.findAllByPerson(person)
+        return [person:person,petList:petList]
 
     }
     def create(){}
