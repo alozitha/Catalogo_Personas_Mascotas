@@ -11,9 +11,11 @@ import static org.springframework.http.HttpStatus.CREATED
 import catalogo_personas_mascotas.Person
 class PetController {
     static allowedMethods = [save: 'POST', update: 'PUT', delete: 'DELETE']
+
     def index() {
         return [petList:Pet.list()]
     }
+
     def show(Long id){
         def pet=Pet.get(id)
         
@@ -25,13 +27,14 @@ class PetController {
     }
     def save(){
         def pet= new Pet(params)
+        //print(params)
         if (pet.validate()) {
             pet.save()
             flash.message='Se guardo correctamente'
-            redirect action: 'index'
+            redirect (action: 'index')
         }
         else {
-
+            //print("aqui")
             render( view:'create',model:[pet:pet,personList:Person.list()])
         }
 

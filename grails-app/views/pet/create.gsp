@@ -9,7 +9,7 @@
     Cumpleaños:<g:field type="date"  name="birthday"  required="" value="${pet?.birthday?.format('yyyy-MM-dd')}" /><br/>
     Fecha adopción:<g:field type="date" name="adoption" value="${pet?.adoption?.format('yyyy-MM-dd')}"/><br/>
     Dueño:
-    <g:select optionKey = "id" optionValue = "${{it.name +' '+it.lastnameP +' '+ (it.lastnameM ?: ' ' )}}"
+    <g:select optionKey = "id" optionValue = "${{it?.name +' '+it?.lastnameP +' '+ (it?.lastnameM ?: ' ' )}}"
               name="person" from = "${personList}" value="${pet?.person?.id}"/><br/>
     <input type="submit" class="button" value="Guardar" />
 

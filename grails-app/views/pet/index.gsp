@@ -30,10 +30,10 @@
     </tr>
     <g:each var="pet" in="${petList}">
         <tr>
-            <td><g:link action="show" id="${pet.id}">${pet.name}</g:link><br/></td>
-            <td><g:formatDate format="yyyy-MM-dd" date="${pet.birthday}"/></td>
-            <td><g:formatDate format="yyyy-MM-dd" date="${pet.adoption}"/></td>
-            <td>${pet.person.name} ${pet.person.lastnameP} ${pet.person.lastnameM}</td>
+            <td><g:link action="show" id="${pet?.id}">${pet?.name}</g:link><br/></td>
+            <td><g:formatDate format="yyyy-MM-dd" date="${pet?.birthday}"/></td>
+            <td><g:formatDate format="yyyy-MM-dd" date="${pet?.adoption}"/></td>
+            <td>${pet?.person?.name} ${pet?.person?.lastnameP} ${pet?.person?.lastnameM}</td>
         </tr>
     </g:each>
 </table>
