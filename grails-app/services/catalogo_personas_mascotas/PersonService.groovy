@@ -7,6 +7,6 @@ class PersonService {
 
     def listPEt(Person person){
         def petList=Pet.findAllByPerson(person) //busca todos los relacionados a esa persona
-        petList// devuelve la lista buscada
+        return petList// devuelve la lista buscada
     }
 }
