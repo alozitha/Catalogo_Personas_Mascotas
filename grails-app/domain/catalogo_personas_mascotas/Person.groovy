@@ -17,11 +17,11 @@ class Person  {
     }
 
     static constraints = {
-        name(blank: false, nullable: false, maxSize: 255)
-        lastnameP(blank: false, nullable: false,maxSize: 255)
-        lastnameM(blank: true, nullable: true,maxSize: 255)
-        phone(blank: false,matches:'(\\d{10})')
-        address(blank: false, nullable: false,maxSize: 255)
+        name blank: false, nullable: false, maxSize:255
+        lastnameP blank: false, nullable: false,maxSize: 255
+        lastnameM blank: true, nullable: true,maxSize: 255
+        phone blank: false,matches:'(\\d{10})'
+        address blank: false, nullable: false,maxSize: 255
 
     }
 

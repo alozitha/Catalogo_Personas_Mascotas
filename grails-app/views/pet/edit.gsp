@@ -12,9 +12,7 @@
     <g:select optionKey = "id" optionValue = "fullName"
               name="person" from = "${personList}" value="${pet?.person?.id}"/><br/>
     <input type="submit" class="button" value="Editar" />
-    <g:eachError bean="${pet}">
-        <li><g:message error="${it}"/></li>
-    </g:eachError>
+    <g:renderErrors bean = "${pet}"/>
 </g:form>
 </body>
 </html>
