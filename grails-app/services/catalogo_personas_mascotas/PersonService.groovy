@@ -1,18 +1,12 @@
 package catalogo_personas_mascotas
 
-import grails.gorm.services.Service
+import grails.gorm.transactions.Transactional
 
-@Service(Person)
-interface PersonService {
+@Transactional
+class PersonService {
 
-    Person get(Serializable id)
-
-    List<Person> list(Map args)
-
-    Long count()
-
-    void delete(Serializable id)
-
-    Person save(Person person)
-
+    def listPEt(Person person){
+        def petList=Pet.findAllByPerson(person) //busca todos los relacionados a esa persona
+        return petList // devuelve la lista buscada
+    }
 }
