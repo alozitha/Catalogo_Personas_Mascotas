@@ -7,6 +7,7 @@ import grails.gorm.transactions.Transactional
 
 class PersonController {
     static allowedMethods = [save: 'POST', update: 'PUT', delete: 'DELETE']
+    def personService
 
     // metodo para mostrar lista de todos los datos registrados en la tabla Person
     def index() {
@@ -16,7 +17,8 @@ class PersonController {
     }
     def show(Long id){
         def person=Person.get(id)
-        def petList=Pet.findAllByPerson(person)
+        // llamada al metodo de servicio que enlista las mascotas
+       def petList=personService.listPEt(person)
         if(!person){
             flash.message="El identificador de la persona es incorrecto"
             redirect(action: 'index')
