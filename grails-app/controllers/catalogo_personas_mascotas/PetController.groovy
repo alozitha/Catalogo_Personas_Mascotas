@@ -37,7 +37,7 @@ class PetController {
             return
         }
         //llamar al metodo del servicio pet para guardar
-       petService.savePet(pet)
+       petService.save(pet)
        // pet.save()
         flash.message='Se guardo correctamente'
         redirect (action: 'index')
@@ -60,7 +60,7 @@ class PetController {
             return
         }
         //llamar al metodo del servicio pet para guardar
-        petService.savePet(pet)
+        petService.save(pet)
        // pet.save(flush:true) // se utiliza el flush para que se conserve el dato y no genere otro
         flash.message='Se edito correctamente el dato con el nombre '+pet.name
         redirect action: 'index'

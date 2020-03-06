@@ -27,7 +27,7 @@ class PersonController {
         return [person:person,petList:petList]
     }
     def create(){}
-    void save(){
+    def save(){
         Person person= new Person(params)
         if (!person.validate()) {
             render( view:'create',model:[person:person])
@@ -48,7 +48,7 @@ class PersonController {
         return [person:person]
     }
 
-    void update(Long id){
+    def update(Long id){
         Person person= Person.get(id)
         bindData(person,params)
         if(!person.validate()){

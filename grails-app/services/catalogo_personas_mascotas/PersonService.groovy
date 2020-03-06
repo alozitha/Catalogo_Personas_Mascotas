@@ -5,7 +5,7 @@ import grails.gorm.transactions.Transactional
 @Transactional
 class PersonService {
 
-    def listPEt(Person person){
-        return Pet.findAllByPerson(person)// devuelve la lista buscada
+    Pet listPEt(Person person){
+         Pet.findAllByPerson(person)// devuelve la lista buscada
     }
 }
