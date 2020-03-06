@@ -12,13 +12,13 @@ class PersonController {
     // metodo para mostrar lista de todos los datos registrados en la tabla Person
     def index() {
         // devuelve la lista de personas al arreglo personList
-        def personList=Person.list()
+        List <Person> personList=Person.list()
         return [personList:personList]
     }
     def show(Long id){
-        def person=Person.get(id)
+        Person person=Person.get(id)
         // llamada al metodo de servicio que enlista las mascotas
-       def petList=personService.listPEt(person)
+       List<Pet> petList=personService.listPEt(person)
         if(!person){
             flash.message="El identificador de la persona es incorrecto"
             redirect(action: 'index')
@@ -27,8 +27,8 @@ class PersonController {
         return [person:person,petList:petList]
     }
     def create(){}
-    def save(){
-        def person= new Person(params)
+    void save(){
+        Person person= new Person(params)
         if (!person.validate()) {
             render( view:'create',model:[person:person])
             return
@@ -39,7 +39,7 @@ class PersonController {
     }
 
     def edit(Long id){
-        def person=Person.get(id)
+        Person person=Person.get(id)
         if(!person){
             flash.message="El identificador de la persona es incorrecto"
             redirect(action: 'index')
@@ -48,10 +48,10 @@ class PersonController {
         return [person:person]
     }
 
-    def update(Long id){
+    void update(Long id){
         Person person= Person.get(id)
-        person.properties= params
-        if(person.validate()){
+        bindData(person,params)
+        if(!person.validate()){
             render( view:'edit',model:[person:person])
             return
         }

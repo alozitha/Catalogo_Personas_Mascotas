@@ -18,7 +18,7 @@ class PetController {
     }
 
     def show(Long id){
-        def pet=Pet.get(id)
+        Pet pet=Pet.get(id)
         if(!pet){
             flash.message="El identificador de la mascota es incorrecto"
             redirect(action: 'index')
@@ -30,7 +30,7 @@ class PetController {
         render(view: 'create',model:[personList:Person.list()] )
     }
     def save(){
-        def pet= new Pet(params)
+        Pet pet= new Pet(params)
         //print(params)
         if (!pet.validate()) {
             render( view:'create',model:[pet:pet,personList:Person.list()])
@@ -44,7 +44,7 @@ class PetController {
 
     }
     def edit(Long id){
-        def pet=Pet.get(id)
+        Pet pet=Pet.get(id)
         if(!pet){
             flash.message="El identificador de la mascota es incorrecto"
             redirect(action: 'index')
@@ -53,8 +53,8 @@ class PetController {
         render(view: 'edit',model:[pet:pet,personList:Person.list()])
     }
     def update(Long id){
-        Pet pet= Pet.get(id)
-        pet.properties= params
+        def pet= Pet.get(id)
+        bindData(pet,params)
         if(!pet.validate()){
             render( view:'edit',model:[pet:pet,personList:Person.list()])
             return
