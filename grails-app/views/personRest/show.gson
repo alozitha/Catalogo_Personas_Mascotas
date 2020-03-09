@@ -1,0 +1,6 @@
+import catalogo_personas_mascotas.Person
+
+model {
+    Person person
+}
+json g.render(template:"details", model:[person:person,pet:petList])

@@ -31,14 +31,15 @@ class PetController {
     }
     def save(){
         Pet pet= new Pet(params)
-        //print(params)
+
         if (!pet.validate()) {
             render( view:'create',model:[pet:pet,personList:Person.list()])
             return
         }
         //llamar al metodo del servicio pet para guardar
-       petService.save(pet)
-       // pet.save()
+       // print(pet.name)
+       //petService.save(pet)
+        pet.save()
         flash.message='Se guardo correctamente'
         redirect (action: 'index')
 
@@ -60,8 +61,8 @@ class PetController {
             return
         }
         //llamar al metodo del servicio pet para guardar
-        petService.save(pet)
-       // pet.save(flush:true) // se utiliza el flush para que se conserve el dato y no genere otro
+        //petService.save(pet)
+        pet.save(flush:true) // se utiliza el flush para que se conserve el dato y no genere otro
         flash.message='Se edito correctamente el dato con el nombre '+pet.name
         redirect action: 'index'
 

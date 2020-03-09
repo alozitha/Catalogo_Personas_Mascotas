@@ -19,7 +19,7 @@ class PetServiceSpec extends Specification implements ServiceUnitTest<PetService
         given:'instance of pet'
         Pet pet= new Pet(name:"Muffin",birthday: '2020-02-02',adoption: '2020-03-01',person: 1)
         when:'call to method'
-        service.savePet(pet)
+        service.save(pet)
         then:'return pet saved'
         //print(pet.id)
         pet

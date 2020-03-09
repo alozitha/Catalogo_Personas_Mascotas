@@ -6,6 +6,7 @@ import grails.gorm.transactions.Transactional
 class PetService {
 
     void save(Pet pet) { // recibe el objeto pet
+
         pet.save(failOnError:true,flush:true) //lo guarda con failOnError and flash
 
     }

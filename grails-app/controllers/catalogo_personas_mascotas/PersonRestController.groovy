@@ -9,41 +9,45 @@ class PersonRestController implements ControllerUtils  {
     PetService petService
 
     /** Return list of person */
-    def list() {
+    def index() {
        List<Person> personList = Person.list()
         [personList:personList]
     }
+
     /** Get info person with list of pets */
-    def showDetails(Long id) {
+    def show(Long id) {
         Person person=Person.get(id)
         List<Pet> petList=personService.listPEt(person)
 
-        if (!id || !petList) {
+        if (!id ) {
             response.status = 404 //error not found
             return
         }
 
-        [person:person,personList:petList]
+        [person:person,petList:petList]
+    }
+    def createPet(Long id){
+
+        render(view: 'createPet',model:[personList:Person.list(),idperson:id] )
     }
 
     /** Creates a new pet for a person */
-    def save(Long personID) {
-        if (!personID ) {
-            response.status = 404
+    def save(Long id) {
+        if (!id ) {
+            response.status = 404 //error not found
             return
         }
-
+        Person person=Person.get(id)
         Pet pet = new Pet()
         bindData(pet, params)
-        pet.personId = personID
-
+        pet.person=person
         if (!pet.validate()) {
             response.status = 400 //request incorrect
             render errorMap(pet) as JSON
             return
         }
-
         petService.save(pet)
-        render view:'show', model:[pet:pet]
+        List<Pet> petList=personService.listPEt(person)
+        render view:'show', model:[person:person,petList: petList]
     }
 }

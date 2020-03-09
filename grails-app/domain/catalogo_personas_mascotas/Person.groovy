@@ -31,5 +31,9 @@ class Person  {
     String getFullName(){
         name+''+lastnameP+''+(lastnameM?:'')
     }
+    List<Pet> listPets(){
+        Pet.findAllByPerson(this)
+    }
+
 
 }

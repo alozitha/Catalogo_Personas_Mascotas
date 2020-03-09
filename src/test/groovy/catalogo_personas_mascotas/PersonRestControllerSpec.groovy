@@ -11,8 +11,4 @@ class PersonRestControllerSpec extends Specification implements ControllerUnitTe
     def cleanup() {
     }
 
-    void "test something"() {
-        expect:"fix me"
-            true == false
-    }
 }

@@ -1,0 +1,16 @@
+import catalogo_personas_mascotas.Person
+
+model {
+    Person person
+
+}
+
+json {
+    id                          person.id
+    name                        person.name
+    lastnameP                   person.lastnameP
+    lastnameM                   person.lastnameM
+    phone                       person.phone
+    address                     person.address
+
+}
