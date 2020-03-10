@@ -7,6 +7,7 @@ class Pet {
     Person person
     Date dateCreated
     Date lastUpdated
+
     //static belongsTo = [person: Person] // esta opcion tambien funciona para poder hacer una relacion funcional
     static constraints = {
         name nullable: false,blank: false,maxSize: 255

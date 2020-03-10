@@ -10,5 +10,7 @@ json {
     name                        pet.name
     adoption                    pet.adoption
     birthday                    pet.birthday
+    person                      pet.person.id
+
 
 }

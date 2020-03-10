@@ -23,6 +23,7 @@ class PersonRestController implements ControllerUtils  {
         }
         Person person=Person.get(id)
         List<Pet> petList=personService.listPEt(person)
+
         render(view:'show', model:[person:person,petList: petList])
 
     }

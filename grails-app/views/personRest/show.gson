@@ -6,6 +6,6 @@ model {
     List<Pet> petList
 }
 json {
-    details     g.render(template:"person", model:[person:person])
-    pet         tmpl.detailsPet(petList?:[])
+    detailsperson     g.render(template:"person", model:[person:person])
+    pet               tmpl.detailsPet(petList?:[])
 }
