@@ -7,7 +7,10 @@ import grails.testing.web.controllers.ControllerUnitTest
 import spock.lang.Specification
 
 class PersonRestControllerSpec extends Specification implements ControllerUnitTest<PersonRestController>, DomainUnitTest<Person>, DataTest {
-
+    Closure doWithSpring() {{ ->
+        personService(PersonService)
+        petService(PetService)
+    }}
     def setup() {
         mockDomains(Pet,Person)
         // creacion de una persona como datos

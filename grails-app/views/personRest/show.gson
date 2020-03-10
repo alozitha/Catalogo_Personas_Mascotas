@@ -1,6 +1,11 @@
 import catalogo_personas_mascotas.Person
+import catalogo_personas_mascotas.Pet
 
 model {
     Person person
+    List<Pet> petList
 }
-json g.render(template:"details", model:[person:person,pet:petList])
+json {
+    details     g.render(template:"details", model:[person:person])
+    pet         person(personList?:[])
+}

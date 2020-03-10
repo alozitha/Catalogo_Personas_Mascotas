@@ -22,9 +22,7 @@ class PersonRestController implements ControllerUtils  {
             return
         }
         Person person=Person.get(id)
-        //print(person.name)
-       // List<Pet> petList=personService.listPEt(person)
-        List<Pet> petList=Pet.findAllByPerson(person)
+        List<Pet> petList=personService.listPEt(person)
         render(view:'show', model:[person:person,petList: petList])
 
     }
@@ -38,11 +36,12 @@ class PersonRestController implements ControllerUtils  {
 
     /** Creates a new pet for a person */
     def save(Long id) {
-        if (!id ) {
+        Person person=Person.get(id)
+        if (!person) {
             response.status = 404 //error not found
             return
         }
-        Person person=Person.get(id)
+
         Pet pet = new Pet()
         bindData(pet, params)
         pet.person=person
@@ -51,10 +50,8 @@ class PersonRestController implements ControllerUtils  {
             render errorMap(pet) as JSON
             return
         }
-       // petService.save(pet)
-        pet.save()
-        //List<Pet> petList=personService.listPEt(person)
-        List<Pet> petList=Pet.findAllByPerson(person)
-        render view:'show', model:[person:person,petList: petList]
+         petService.save(pet)
+         List<Pet> petList=personService.listPEt(person)
+        render view:'show', model:[person:person as JSON,petList: petList as JSON]
     }
 }
