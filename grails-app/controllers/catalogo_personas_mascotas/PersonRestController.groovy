@@ -53,6 +53,6 @@ class PersonRestController implements ControllerUtils  {
         }
          petService.save(pet)
          List<Pet> petList=personService.listPEt(person)
-        render view:'show', model:[person:person as JSON,petList: petList as JSON]
+        render view:'show', model:[person:person,petList: petList]
     }
 }
