@@ -1,0 +1,14 @@
+import catalogo_personas_mascotas.Person
+import catalogo_personas_mascotas.Pet
+
+model {
+    Pet pet
+}
+
+json {
+    id                          pet.id
+    name                        pet.name
+    adoption                    pet.adoption
+    birthday                    pet.birthday
+
+}
