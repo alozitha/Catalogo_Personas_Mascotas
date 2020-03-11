@@ -81,15 +81,21 @@ class PersonRestControllerSpec extends Specification implements ControllerUnitTe
         then:
         response.status==404
     }
-    def 'create without id '(){
+    def 'show with id dont exist'(){
         when:
-        controller.createPet()
+        controller.show(99)
         then:
         response.status==404
     }
     def 'save without id '(){
         when:
         controller.save()
+        then:
+        response.status==405
+    }
+    def 'save with id dont exist'(){
+        when:
+        controller.save(99)
         then:
         response.status==405
     }
