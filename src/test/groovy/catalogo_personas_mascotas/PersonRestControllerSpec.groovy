@@ -46,9 +46,9 @@ class PersonRestControllerSpec extends Specification implements ControllerUnitTe
         given:
         request.method = 'POST'
         request.contentType = FORM_CONTENT_TYPE
-        params['name'] ="Firulais"
-        params['birthday'] ='2020-02-23'
-        params['adoption']='2020-02-25'
+        request.JSON['name'] ="Firulais"
+        request.JSON['birthday'] ='2020-02-23'
+        request.JSON['adoption']='2020-02-25'
         when:
         controller.save(1)
         then:
@@ -63,9 +63,9 @@ class PersonRestControllerSpec extends Specification implements ControllerUnitTe
         given:
         request.method = 'POST'
         request.contentType = FORM_CONTENT_TYPE
-        params['name'] =""
-        params['birthday'] ='2020-02-23'
-        params['adoption']='2020-02-25'
+        request.JSON['name'] =""
+        request.JSON['birthday'] ='2020-02-23'
+        request.JSON['adoption']='2020-02-25'
         when:
         controller.save(1)
         then:

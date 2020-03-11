@@ -38,7 +38,7 @@ class PersonRestController implements ControllerUtils  {
         }
 
         Pet pet = new Pet()
-        bindData(pet, params)
+        bindData(pet, request.JSON)
         pet.person=person
         if (!pet.validate()) {
             response.status = 400 //request incorrect
