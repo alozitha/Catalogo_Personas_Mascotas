@@ -28,7 +28,7 @@ repositories {
 }
 
 dependencies {
-   // compile "org.grails.plugins:mysql-connectorj:5.1.22.1"
+
     compile "org.grails.plugins:views-json:1.2.0"
     compile('org.springframework.boot:spring-boot-starter-jdbc:1.2.7.RELEASE')
     compile "org.springframework.boot:spring-boot-starter-logging"
@@ -64,6 +64,7 @@ dependencies {
     testRuntime "org.seleniumhq.selenium:selenium-htmlunit-driver:2.47.1"
     testRuntime "net.sourceforge.htmlunit:htmlunit:2.18"
     runtime group:'mysql',name:'mysql-connector-java',version:'5.1.6'
+    //compile "org.grails.plugins:twitter-bootstrap:3.3.4"
 }
 
 bootRun {
