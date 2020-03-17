@@ -6,7 +6,7 @@ import catalogo_personas_mascotas.Person
 import grails.gorm.transactions.Transactional
 
 class PersonController {
-    static allowedMethods = [save: 'POST', update: 'PUT', delete: 'DELETE']
+    static allowedMethods = [save: 'POST', update: 'POST', delete: 'DELETE']
     def personService
 
     // metodo para mostrar lista de todos los datos registrados en la tabla Person
@@ -45,7 +45,7 @@ class PersonController {
             redirect(action: 'index')
             return
         }
-        return [person:person]
+        render( view:'edit',model:[person:person])
     }
 
     def update(Long id){
@@ -55,8 +55,10 @@ class PersonController {
             render( view:'edit',model:[person:person])
             return
         }
+
         person.save(flush : true) // se utiliza el flush para que se conserve el dato y no genere otro
         flash.message='Se edito correctamente el dato con el nombre '+person.name
+
         redirect action: 'index'
 
     }
